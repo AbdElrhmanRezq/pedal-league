@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
+      child: SizedBox(
         height: height * 0.21,
         width: width * 0.41,
         child: ElevatedButton(

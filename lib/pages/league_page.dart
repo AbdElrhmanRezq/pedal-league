@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homies_filteration/components/custom_match_tile.dart';
+import 'package:homies_filteration/components/custom_timer.dart';
 import 'package:provider/provider.dart';
 
 import '../models/players_list.dart';
@@ -63,14 +64,18 @@ class _LeaguePageState extends State<LeaguePage> {
     int pointer = Provider.of<PlayersList>(context, listen: false).pointer;
     int matchCount = (players.length / 4).toInt();
 
+    CustomTimer timer = const CustomTimer();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [timer],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          timer.resetTimerButton();
           if (players.length % 4 == 0) {
             shuffle();
           } else {
