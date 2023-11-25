@@ -30,4 +30,15 @@ class PlayersList extends ChangeNotifier {
     shuffledPlayers.shuffle();
     notifyListeners();
   }
+
+  void savePlayers() async {
+    var box = await Hive.openBox('myBox');
+    box.put("players", players);
+    notifyListeners();
+  }
+
+  void shuffleDefaultPlayers() {
+    players.shuffle();
+    notifyListeners();
+  }
 }

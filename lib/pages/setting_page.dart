@@ -66,7 +66,7 @@ class _SettingPageState extends State<SettingPage> {
                     child: Text(
                       "Current Timer: $timerValue",
                       style: TextStyle(
-                          color: Colors.grey[400], fontWeight: FontWeight.bold),
+                          color: Colors.grey[300], fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

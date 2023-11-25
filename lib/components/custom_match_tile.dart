@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homies_filteration/components/custom_text.dart';
 
 class CustomMatchTile extends StatelessWidget {
   String p1, p2, p3, p4;
@@ -9,58 +10,33 @@ class CustomMatchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 2),
-            gradient: LinearGradient(
-              stops: [0.499, 0.5, .509],
-              colors: [Colors.blue, Colors.white, Colors.blue],
-            ),
-            borderRadius: BorderRadius.circular(4)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(p1,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      p2,
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                stops: [0.499, 0.5, .509],
+                colors: [Colors.black87, Colors.black, Colors.black87],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(p3,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(p4,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
-                  )
-                ],
+              borderRadius: BorderRadius.circular(10)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [CustomText(text: p1), CustomText(text: p2)],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  children: [CustomText(text: p3), CustomText(text: p4)],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -112,13 +112,10 @@ class _LeaguePageState extends State<LeaguePage> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          Text(
-                              index == 0
-                                  ? "Current Match"
-                                  : index == 1
-                                      ? "Next Match"
-                                      : "After Next Match",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          const Text(
+                            "Homies League",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           CustomMatchTile(
                               p1: players[0 + index * 4],
                               p2: players[1 + index * 4],
@@ -154,34 +151,47 @@ class _LeaguePageState extends State<LeaguePage> {
                                   child: Wrap(
                                     crossAxisAlignment:
                                         WrapCrossAlignment.start,
-                                    children: players.map((item) {
+                                    children:
+                                        players.asMap().entries.map((entry) {
+                                      int index = entry.key;
+                                      String item = entry.value;
                                       bool condition = players[pointer] == item;
 
                                       return Padding(
                                         padding: const EdgeInsets.all(4.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: condition
-                                                  ? Colors.green
-                                                  : Colors.grey[200],
-                                              borderRadius:
-                                                  BorderRadius.circular(2)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              item,
-                                              style: TextStyle(
-                                                  color: condition
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                                  fontWeight: FontWeight.bold),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              Provider.of<PlayersList>(context,
+                                                      listen: false)
+                                                  .pointer = index;
+                                            });
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: condition
+                                                    ? Colors.green
+                                                    : Colors.grey[100],
+                                                borderRadius:
+                                                    BorderRadius.circular(2)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                item,
+                                                style: TextStyle(
+                                                    color: condition
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       );
                                     }).toList(),
-                                  ),
-                                ),
+                                  )),
                         ],
                       );
                     }));

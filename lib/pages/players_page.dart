@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homies_filteration/models/players_list.dart';
 import 'package:provider/provider.dart';
+import 'package:reorderable_grid_view/reorderable_grid_view.dart';
 
 import '../consts.dart';
 
@@ -63,12 +64,21 @@ class _PlayersPageState extends State<PlayersPage> {
       ),
       body: SafeArea(
           child: Center(
-        child: GridView.builder(
+        child: ReorderableGridView.builder(
+          onReorder: (oldIndex, newIndex) {
+            List<String> tempPlayers =
+                Provider.of<PlayersList>(context).players;
+            String temp = tempPlayers[oldIndex];
+            tempPlayers[oldIndex] = tempPlayers[newIndex];
+            tempPlayers[newIndex] = temp;
+            Provider.of<PlayersList>(context).savePlayers();
+          },
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemCount: players.length,
           itemBuilder: (context, index) {
             return Padding(
+              key: ValueKey(players),
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
               child: GestureDetector(
@@ -83,7 +93,7 @@ class _PlayersPageState extends State<PlayersPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.sports_gymnastics),
+                        Icon(Icons.face_6),
                         Text(
                           players[index].length > 10
                               ? players[index].substring(0, 7) + '...'

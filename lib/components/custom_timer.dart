@@ -68,10 +68,11 @@ class _CustomTimerState extends State<CustomTimer> {
           onDoubleTap: resetTimer,
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.green,
+                color: timeLeft <= 15 ? Colors.red : Colors.green,
                 borderRadius: BorderRadius.circular(KBorderRadiusButton)),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
               child: Text(timeLeft == 0
                   ? "Done"
                   : (timeLeft / 60).toInt().toString() +
